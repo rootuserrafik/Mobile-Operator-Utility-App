@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Help</title>
+
+    <!-- Google Fonts: Poppins and Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+    <style>
+        /* 4. Color Scheme */
+        :root {
+            --page-background: #FFFFFF;
+            --text-primary: #212121;
+            --text-secondary: #424242;
+            --button-bg: #0077C2;
+            --button-text: #FFFFFF;
+            --link-color: #0077C2;
+            
+            /* General Styling */
+            --page-padding: 20px;
+            --section-gap: 24px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--page-background);
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-primary);
+        }
+
+        .container {
+            padding: 0 var(--page-padding) var(--page-padding) var(--page-padding);
+        }
+
+        /* 2. Page Structure & 5. Styling: Header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            padding: 16px var(--page-padding);
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            background-color: var(--page-background);
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* 3. Typography */
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600; /* Semi-Bold */
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 500; /* Medium */
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .body-text {
+            font-size: 14px;
+            font-weight: 400; /* Regular */
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .body-text p {
+            margin: 0 0 16px 0;
+        }
+
+        .contact-button-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700; /* Bold */
+            color: var(--button-text);
+        }
+
+        /* App Info Section */
+        .app-info {
+            text-align: center;
+            padding: var(--section-gap) 0;
+        }
+
+        .app-info h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            margin: 0 0 4px 0;
+        }
+
+        .app-info .version-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Help Section */
+        .help-section,
+        .support-section,
+        .legal-section {
+            margin-bottom: var(--section-gap);
+        }
+
+        /* Contact Button */
+        .contact-button {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background-color: var(--button-bg);
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 119, 194, 0.2);
+            transition: opacity 0.2s;
+        }
+        
+        .contact-button:active {
+            opacity: 0.8;
+        }
+        
+        /* Legal Links */
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .legal-links a {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <a href="#" class="back-button" aria-label="Go back">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h2 class="page-title">About & Help</h2>
+    </header>
+
+    <main class="container">
+
+        <!-- App Info Section -->
+        <section class="app-info">
+            <h1>Operator App</h1>
+            <p class="version-text">Version 1.0.0</p>
+        </section>
+
+        <!-- Help / Usage Guide Section -->
+        <section class="help-section">
+            <h3 class="section-title">How to Use This App</h3>
+            <div class="body-text">
+                <p>
+                    Welcome to Operator App! This app is designed to make managing your mobile services quick and easy.
+                </p>
+                <p>
+                    - **Home:** Check your balance and access key features with one tap.
+                    <br>
+                    - **Offers:** Browse and activate the latest internet, minute, and combo packs.
+                    <br>
+                    - **Dial Codes:** Quickly find and dial important USSD codes for various services.
+                </p>
+                <p>
+                    Use the navigation bar at the bottom to switch between pages. For any issues, please contact our support team.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Support Section -->
+        <section class="support-section">
+            <h3 class="section-title">Support</h3>
+            <!-- 6. Interaction Details: Opens dialer -->
+            <a href="tel:121" class="contact-button">
+                <span class="contact-button-text">Contact Support (121)</span>
+            </a>
+        </section>
+        
+        <!-- Legal & Privacy Section -->
+        <section class="legal-section">
+            <h3 class="section-title">Legal</h3>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer Details</title>
+
+    <!-- Google Fonts: Poppins and Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+    <style>
+        /* 5. Color Scheme & General Styles */
+        :root {
+            --page-background: #FFFFFF;
+            --text-primary: #212121;
+            --text-description: #424242;
+            --text-terms: #666666;
+            --accent-color: #0077C2;
+            --button-text-color: #FFFFFF;
+            
+            /* 6. Styling Guidelines */
+            --page-padding: 20px;
+            --button-radius: 12px;
+            --soft-shadow: 0 4px 12px rgba(0, 119, 194, 0.2);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--page-background);
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-primary);
+        }
+
+        .container {
+            padding: 0 var(--page-padding) 100px var(--page-padding); /* Padding at bottom for button */
+        }
+        
+        /* Header & Back Button */
+        .page-header {
+            display: flex;
+            align-items: center;
+            padding: 16px var(--page-padding);
+            gap: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* 4. Typography */
+        .offer-title-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600; /* Semi-Bold */
+            margin: 0;
+        }
+
+        .offer-title-main {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 600; /* Semi-Bold */
+            margin: 24px 0 12px 0;
+            text-align: center;
+        }
+
+        .price-validity-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f6f8;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+        }
+        
+        .price-validity-info .info-item {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 500; /* Medium */
+            color: var(--accent-color);
+        }
+
+        .description-text {
+            font-size: 14px;
+            font-weight: 400; /* Regular */
+            color: var(--text-description);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .terms-details {
+            border-top: 1px solid #e0e0e0;
+            margin-top: 16px;
+        }
+
+        .terms-summary {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding: 16px 0;
+            cursor: pointer;
+            list-style: none; /* remove default arrow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .terms-summary::-webkit-details-marker {
+            display: none; /* remove default arrow for Chrome/Safari */
+        }
+        
+        .terms-summary .chevron {
+            transition: transform 0.3s ease;
+        }
+        
+        .terms-details[open] .terms-summary .chevron {
+            transform: rotate(180deg);
+        }
+
+        .terms-content {
+            font-size: 13px;
+            font-weight: 400; /* Regular */
+            color: var(--text-terms);
+            line-height: 1.5;
+            padding-bottom: 16px;
+        }
+        
+        /* Activate Button */
+        .cta-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, white, rgba(255,255,255,0.8) 50%, transparent);
+            padding: 20px;
+        }
+
+        .activate-button {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700; /* Bold */
+            color: var(--button-text-color);
+            background-color: var(--accent-color);
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: var(--button-radius);
+            cursor: pointer;
+            box-shadow: var(--soft-shadow);
+            transition: opacity 0.2s;
+        }
+
+        .activate-button:active {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Back Button and Title -->
+    <header class="page-header">
+        <a href="#" class="back-button" aria-label="Go back">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h2 class="offer-title-header">Offer Details</h2>
+    </header>
+
+    <main class="container">
+        
+        <!-- Optional Offer Icon -->
+        <div style="text-align: center; margin-top: 20px;">
+            <span class="material-symbols-outlined" style="font-size: 64px; color: var(--accent-color);">card_giftcard</span>
+        </div>
+
+        <!-- Main Offer Title -->
+        <h1 class="offer-title-main">2GB Internet Super Pack</h1>
+
+        <!-- Price & Validity -->
+        <div class="price-validity-info">
+            <span class="info-item">Price: ৳34</span>
+            <span class="info-item">Validity: 3 Days</span>
+        </div>
+
+        <!-- Description -->
+        <p class="description-text">
+            Enjoy 2GB of high-speed internet for any use, available 24 hours a day. This pack is perfect for streaming, browsing, and social media. The data is usable on 2G, 3G, and 4G networks.
+        </p>
+
+        <!-- Terms & Conditions (Collapsible) -->
+        <details class="terms-details">
+            <summary class="terms-summary">
+                Terms & Conditions
+                <span class="material-symbols-outlined chevron">expand_more</span>
+            </summary>
+            <div class="terms-content">
+                <ul>
+                    <li>This offer is available for all prepaid customers.</li>
+                    <li>To check your remaining data balance, dial *121*1*4#.</li>
+                    <li>This pack will not auto-renew.</li>
+                    <li>Unused data will expire after the validity period.</li>
+                    <li>All prices are inclusive of VAT, SD, and SC.</li>
+                </ul>
+            </div>
+        </details>
+
+    </main>
+
+    <!-- Activate Button Footer -->
+    <footer class="cta-footer">
+        <button class="activate-button" onclick="alert('Activating Offer...')">
+            Activate Now
+        </button>
+    </footer>
+
+</body>
+</html>

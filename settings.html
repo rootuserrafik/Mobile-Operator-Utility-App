@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+
+    <!-- Google Fonts: Poppins and Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+    <style>
+        /* 5. Color Scheme */
+        :root {
+            /* Light Mode Colors */
+            --page-background: #F4F6F8;
+            --container-background: #FFFFFF;
+            --text-primary: #212121;
+            --text-secondary: #666666;
+            --accent-color: #0077C2;
+            --switch-track-off: #BDBDBD;
+            --divider-color: #E0E0E0;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode Colors */
+            --page-background: #121212;
+            --container-background: #1E1E1E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0BEC5;
+            --accent-color: #03A9F4; /* Lighter blue for better contrast */
+            --switch-track-off: #424242;
+            --divider-color: #333333;
+        }
+
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0 var(--spacing-unit) 80px var(--spacing-unit);
+            background-color: var(--page-background);
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* 4. Typography & 6. Styling */
+        :root {
+            --spacing-unit: 16px;
+            --section-spacing: 20px;
+        }
+
+        .container {
+            padding: var(--spacing-unit);
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            text-align: center;
+            margin: var(--spacing-unit) 0;
+        }
+
+        .settings-section {
+            background-color: var(--container-background);
+            border-radius: 12px;
+            padding: var(--spacing-unit);
+            margin-bottom: var(--section-spacing);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: background-color 0.3s;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 var(--spacing-unit) 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            min-height: 48px;
+        }
+
+        .settings-item:not(:last-child) {
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .option-label {
+            font-size: 16px;
+            font-weight: 400; /* Regular */
+            color: var(--text-primary);
+        }
+        
+        /* Dropdown Styling */
+        .dropdown-selector {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            color: var(--accent-color);
+            background-color: transparent;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%230077C2' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 28px;
+        }
+        
+        [data-theme="dark"] .dropdown-selector {
+             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2303A9F4' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+        }
+
+        .dropdown-selector:focus {
+            outline: none;
+            background-color: rgba(0, 119, 194, 0.1);
+        }
+
+        /* Switch Styling */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+        .switch input { display: none; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--switch-track-off);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--accent-color); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        /* Links Styling */
+        .info-link {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent-color);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background-color: var(--container-background); box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-around; padding: 8px 0; border-top: 1px solid var(--divider-color); transition: background-color 0.3s, border-color 0.3s;}
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-secondary); text-decoration: none; flex-grow: 1; font-size: 12px; }
+        .nav-item .material-symbols-outlined { font-size: 24px; margin-bottom: 4px; }
+        .nav-item.active { color: var(--accent-color); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="page-title">Settings</h1>
+    </header>
+
+    <main class="container">
+
+        <!-- Preferences Section -->
+        <section class="settings-section">
+            <h2 class="section-title">Preferences</h2>
+            <div class="settings-item">
+                <label for="language-select" class="option-label">Language</label>
+                <select id="language-select" class="dropdown-selector">
+                    <option value="en">English</option>
+                    <option value="bn">বাংলা</option>
+                </select>
+            </div>
+            <div class="settings-item">
+                <label for="theme-switch" class="option-label">Dark Mode</label>
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </section>
+
+        <!-- SIM & Actions Section -->
+        <section class="settings-section">
+            <h2 class="section-title">SIM & Actions</h2>
+            <div class="settings-item">
+                <label for="sim-select" class="option-label">Default SIM</label>
+                <select id="sim-select" class="dropdown-selector">
+                    <option value="sim1">SIM 1</option>
+                    <option value="sim2">SIM 2</option>
+                    <option value="ask">Ask Every Time</option>
+                </select>
+            </div>
+            <div class="settings-item">
+                <label for="auto-sms-switch" class="option-label">Auto Send SMS</label>
+                <label class="switch">
+                    <input type="checkbox" id="auto-sms-switch" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="settings-section">
+            <h2 class="section-title">About</h2>
+            <div class="settings-item">
+                <a href="#" class="info-link">App Permissions</a>
+            </div>
+            <div class="settings-item">
+                <a href="#" class="info-link">About Us</a>
+            </div>
+             <div class="settings-item">
+                <a href="#" class="info-link">Terms of Service</a>
+            </div>
+            <div class="settings-item" style="border-bottom: none;">
+                <a href="#" class="info-link">Privacy Policy</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item"><span class="material-symbols-outlined">home</span>Home</a>
+        <a href="#" class="nav-item"><span class="material-symbols-outlined">local_offer</span>Offers</a>
+        <a href="#" class="nav-item"><span class="material-symbols-outlined">send_to_mobile</span>SMS</a>
+        <a href="#" class="nav-item"><span class="material-symbols-outlined">dialer_sip</span>Dial</a>
+        <a href="#" class="nav-item active"><span class="material-symbols-outlined">settings</span>Settings</a>
+    </nav>
+    
+    <script>
+        // 7. Interaction Details - Theme Switch
+        const themeSwitch = document.getElementById('theme-switch');
+        const htmlElement = document.documentElement;
+
+        themeSwitch.addEventListener('change', () => {
+            if (themeSwitch.checked) {
+                htmlElement.setAttribute('data-theme', 'dark');
+            } else {
+                htmlElement.setAttribute('data-theme', 'light');
+            }
+        });
+    </script>
+
+</body>
+</html>

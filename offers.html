@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offers</title>
+
+    <!-- Google Fonts: Poppins and Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Material Icons (for Bottom Nav and potential future use) -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+    <style>
+        /* 4. Color Scheme & General Styles */
+        :root {
+            /* From Guide */
+            --selected-tab-color: #0077C2;
+            --unselected-tab-text: #666666;
+            --card-background: #FFFFFF;
+            --page-background: #F4F6F8;
+            --text-primary: #212121;
+            --text-secondary: #666666;
+            --activate-button-bg: #0077C2;
+            --activate-button-text: #FFFFFF;
+            
+            /* General & Styling Guidelines */
+            --card-radius: 12px;
+            --button-radius: 12px;
+            --soft-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            --page-padding: 16px;
+            --spacing-unit: 16px;
+            --min-touch-target: 48px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 80px; /* Space for bottom nav */
+            background-color: var(--page-background);
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-primary);
+        }
+
+        .container {
+            padding: 0 var(--page-padding);
+        }
+
+        /* Optional Header */
+        .header-card {
+            background-color: var(--card-background);
+            border-radius: var(--card-radius);
+            padding: var(--page-padding);
+            margin: var(--page-padding) var(--page-padding) 0 var(--page-padding);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header-card .operator-logo {
+            width: 80px;
+            height: auto;
+        }
+        
+        .header-card .sim-info h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .header-card .sim-info span {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            color: var(--selected-tab-color);
+            font-weight: 500;
+        }
+
+        /* 2 & 5. Category Tabs */
+        .tabs-container {
+            display: flex;
+            gap: 8px;
+            padding: var(--spacing-unit) 0;
+            margin: 0 var(--page-padding);
+            overflow-x: auto; /* For long category lists on small screens */
+            white-space: nowrap;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        .tab-item {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500; /* Medium */
+            padding: 8px 16px;
+            border-radius: 20px; /* Pill shape */
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+            color: var(--unselected-tab-text);
+            background-color: transparent;
+        }
+        
+        .tab-item.active {
+            background-color: var(--selected-tab-color);
+            color: var(--activate-button-text);
+            border-color: var(--selected-tab-color);
+        }
+
+        /* 2 & 6. Offer Card List */
+        .offer-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-unit);
+        }
+        
+        .offer-card {
+            background-color: var(--card-background);
+            border-radius: var(--card-radius);
+            box-shadow: var(--soft-shadow);
+            padding: var(--page-padding);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* 3. Typography for Cards */
+        .offer-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600; /* Semi-Bold */
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .offer-price-validity {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 400; /* Regular */
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        .offer-description {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin: 8px 0;
+        }
+        
+        .activate-button {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500; /* Medium */
+            color: var(--activate-button-text);
+            background-color: var(--activate-button-bg);
+            border: none;
+            border-radius: var(--button-radius);
+            padding: 12px;
+            margin-top: 8px;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            min-height: var(--min-touch-target);
+            box-sizing: border-box;
+            transition: opacity 0.2s;
+        }
+
+        .activate-button:active {
+            opacity: 0.8;
+        }
+
+        /* Bottom Nav - Consistent with Home Page */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-background);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.07);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 1px solid #eee;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            flex-grow: 1;
+            font-size: 12px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .nav-item .material-symbols-outlined { font-size: 24px; margin-bottom: 4px; }
+        .nav-item.active { color: var(--selected-tab-color); }
+    </style>
+</head>
+<body>
+
+    <main>
+        <!-- Category Tabs -->
+        <nav class="tabs-container">
+            <a href="#" class="tab-item active">Internet</a>
+            <a href="#" class="tab-item">Minute</a>
+            <a href="#" class="tab-item">Combo</a>
+            <a href="#" class="tab-item">Special</a>
+            <a href="#" class="tab-item">My Offers</a>
+        </nav>
+
+        <!-- Offer Cards List -->
+        <div class="container">
+            <section class="offer-list">
+                <!-- Offer Card 1: Internet -->
+                <div class="offer-card">
+                    <h3 class="offer-title">2GB Internet Pack</h3>
+                    <p class="offer-price-validity">Price: <strong>৳34</strong> | Validity: <strong>3 Days</strong></p>
+                    <p class="offer-description">Available for all prepaid customers.</p>
+                    <button class="activate-button">Activate</button>
+                </div>
+                
+                <!-- Offer Card 2: Internet -->
+                <div class="offer-card">
+                    <h3 class="offer-title">10GB Super Pack</h3>
+                    <p class="offer-price-validity">Price: <strong>৳199</strong> | Validity: <strong>30 Days</strong></p>
+                    <button class="activate-button">Activate</button>
+                </div>
+                
+                <!-- Offer Card 3: Internet (assuming filtered view) -->
+                <div class="offer-card">
+                    <h3 class="offer-title">Weekly 5GB + 5GB 4G</h3>
+                    <p class="offer-price-validity">Price: <strong>৳129</strong> | Validity: <strong>7 Days</strong></p>
+                    <p class="offer-description">Bonus 5GB only available on 4G network.</p>
+                    <button class="activate-button">Activate</button>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Persistent Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">home</span>
+            Home
+        </a>
+        <a href="#" class="nav-item active">
+            <span class="material-symbols-outlined">local_offer</span>
+            Offers
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">send_to_mobile</span>
+            SMS
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">dialer_sip</span>
+            Dial
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">settings</span>
+            Settings
+        </a>
+    </nav>
+    
+</body>
+</html>
