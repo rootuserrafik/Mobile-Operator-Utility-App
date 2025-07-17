@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Dashboard</title>
+
+    <!-- Google Fonts: Poppins and Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Material Icons (Outlined) -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+    <style>
+        /* 4. Color Scheme & General Styles */
+        :root {
+            --primary-color: #0077C2;
+            --secondary-color: #E60000;
+            --background-color: #F4F6F8;
+            --card-color: #FFFFFF;
+            --text-primary: #212121;
+            --text-secondary: #666666;
+            --text-on-button: #FFFFFF;
+            --accent-info: #03A9F4;
+            
+            /* 5. Styling Guidelines */
+            --card-radius: 16px;
+            --button-radius: 12px;
+            --soft-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            --spacing-unit: 16px;
+            --min-touch-target: 48px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 80px; /* Space for bottom nav */
+            background-color: var(--background-color);
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-primary);
+        }
+
+        .container {
+            padding: var(--spacing-unit);
+        }
+
+        /* 3. Typography Guidelines */
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700; /* Bold */
+            color: var(--text-primary);
+            margin: 0 0 var(--spacing-unit) 0;
+        }
+        
+        .button-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 500; /* Medium */
+            color: var(--text-on-button);
+        }
+
+        .info-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            font-weight: 400; /* Regular */
+            color: var(--text-secondary);
+        }
+        
+        .sim-details {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 500; /* Medium */
+            color: var(--primary-color);
+        }
+        
+        /* 2. Page Structure: Header */
+        .header-card {
+            background-color: var(--card-color);
+            border-radius: var(--card-radius);
+            box-shadow: var(--soft-shadow);
+            padding: var(--spacing-unit);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .header-card .material-symbols-outlined {
+            font-size: 32px;
+            color: var(--primary-color);
+        }
+
+        .header-card .operator-logo {
+            width: 80px; /* Placeholder */
+            height: auto;
+        }
+        
+        .header-card .sim-info {
+            flex-grow: 1;
+        }
+        
+        .header-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        /* 2. Page Structure: Quick Actions Grid */
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .action-button {
+            background-color: var(--primary-color);
+            color: var(--text-on-button);
+            border: none;
+            border-radius: var(--button-radius);
+            padding: var(--spacing-unit);
+            min-height: var(--min-touch-target);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            gap: 8px;
+            box-shadow: var(--soft-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .action-button:active {
+            transform: scale(0.97);
+            box-shadow: none;
+        }
+
+        .action-button .material-symbols-outlined {
+            font-size: 36px;
+        }
+
+        /* 2. Page Structure: Optional Info Bar */
+        .info-bar {
+            background-color: var(--accent-info);
+            color: white;
+            padding: 12px var(--spacing-unit);
+            border-radius: var(--button-radius);
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+        }
+
+        /* 2. Page Structure: Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-color);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.07);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            flex-grow: 1;
+            font-size: 12px;
+            font-family: 'Roboto', sans-serif;
+            min-width: var(--min-touch-target);
+        }
+
+        .nav-item .material-symbols-outlined {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <!-- 1. Header: SIM + Operator Info -->
+        <header class="header-card">
+            <span class="material-symbols-outlined">sim_card</span>
+            <div class="sim-info">
+                <!-- Operator name and logo would be dynamically inserted here -->
+                <h2>Operator Name</h2>
+                <span class="sim-details">SIM Slot 1</span>
+            </div>
+        </header>
+
+        <!-- Page Title -->
+        <h1 class="page-title">Dashboard</h1>
+
+        <!-- 2. Quick Actions Grid (2x2) -->
+        <section class="quick-actions-grid">
+            <!-- 6. Action Button Guidelines -->
+            <a href="#" class="action-button">
+                <span class="material-symbols-outlined">account_balance_wallet</span>
+                <span class="button-label">Check Balance</span>
+            </a>
+            <a href="#" class="action-button">
+                <span class="material-symbols-outlined">card_giftcard</span>
+                <span class="button-label">View Offers</span>
+            </a>
+            <a href="#" class="action-button">
+                <span class="material-symbols-outlined">sms</span>
+                <span class="button-label">Send SMS</span>
+            </a>
+            <a href="#" class="action-button">
+                <span class="material-symbols-outlined">dialpad</span>
+                <span class="button-label">Dial Codes</span>
+            </a>
+        </section>
+
+        <!-- 3. Optional Info Bar -->
+        <section class="info-bar">
+            <p class="info-text" style="color: white; margin: 0;">
+                Last checked balance: ৳50.25 on 12 Jul, 10:30 PM
+            </p>
+        </section>
+
+    </main>
+
+    <!-- 4. Persistent Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <span class="material-symbols-outlined">home</span>
+            Home
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">local_offer</span>
+            Offers
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">send_to_mobile</span>
+            SMS
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">dialer_sip</span>
+            Dial
+        </a>
+        <a href="#" class="nav-item">
+            <span class="material-symbols-outlined">settings</span>
+            Settings
+        </a>
+    </nav>
+
+</body>
+</html>
