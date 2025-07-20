@@ -182,7 +182,7 @@
         <a href="offers.html" class="back-button" aria-label="Go back">
             <span class="material-symbols-outlined">arrow_back</span>
         </a>
-        <h2 class="offer-title-header">Offer Details</h2>
+        <h2 class="offer-title-header" id="offer-title-header">Offer Details</h2>
     </header>
 
     <main class="container">
@@ -193,18 +193,16 @@
         </div>
 
         <!-- Main Offer Title -->
-        <h1 class="offer-title-main">2GB Internet Super Pack</h1>
+        <h1 class="offer-title-main" id="offer-title-main"></h1>
 
         <!-- Price & Validity -->
         <div class="price-validity-info">
-            <span class="info-item">Price: ৳34</span>
-            <span class="info-item">Validity: 3 Days</span>
+            <span class="info-item" id="offer-price"></span>
+            <span class="info-item" id="offer-validity"></span>
         </div>
 
         <!-- Description -->
-        <p class="description-text">
-            Enjoy 2GB of high-speed internet for any use, available 24 hours a day. This pack is perfect for streaming, browsing, and social media. The data is usable on 2G, 3G, and 4G networks.
-        </p>
+        <p class="description-text" id="offer-description"></p>
 
         <!-- Terms & Conditions (Collapsible) -->
         <details class="terms-details">
@@ -212,14 +210,8 @@
                 Terms & Conditions
                 <span class="material-symbols-outlined chevron">expand_more</span>
             </summary>
-            <div class="terms-content">
-                <ul>
-                    <li>This offer is available for all prepaid customers.</li>
-                    <li>To check your remaining data balance, dial *121*1*4#.</li>
-                    <li>This pack will not auto-renew.</li>
-                    <li>Unused data will expire after the validity period.</li>
-                    <li>All prices are inclusive of VAT, SD, and SC.</li>
-                </ul>
+            <div class="terms-content" id="offer-terms">
+                <!-- Terms will be loaded here -->
             </div>
         </details>
 
@@ -227,10 +219,102 @@
 
     <!-- Activate Button Footer -->
     <footer class="cta-footer">
-        <button class="activate-button" onclick="alert('Activating Offer...')">
+        <button class="activate-button" id="activate-button">
             Activate Now
         </button>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const offerId = urlParams.get('id');
+
+            const offers = {
+                'internet-2gb': {
+                    title: '2GB Internet Pack',
+                    price: '৳34',
+                    validity: '3 Days',
+                    description: 'Enjoy 2GB of high-speed internet for any use, available 24 hours a day. This pack is perfect for streaming, browsing, and social media. The data is usable on 2G, 3G, and 4G networks.',
+                    terms: '<ul><li>This offer is available for all prepaid customers.</li><li>To check your remaining data balance, dial *121*1*4#.</li><li>This pack will not auto-renew.</li><li>Unused data will expire after the validity period.</li><li>All prices are inclusive of VAT, SD, and SC.</li></ul>',
+                    action: { type: 'dial', code: '*121*3*1#' }
+                },
+                'internet-10gb': {
+                    title: '10GB Super Pack',
+                    price: '৳199',
+                    validity: '30 Days',
+                    description: 'High-speed internet for heavy users. Stream, download, and browse without limits.',
+                    terms: '<ul><li>Valid for 30 days.</li><li>Auto-renewal available.</li></ul>',
+                    action: { type: 'sms', recipient: '212', message: '10GB' }
+                },
+                'internet-5gb-weekly': {
+                    title: 'Weekly 5GB + 5GB 4G',
+                    price: '৳129',
+                    validity: '7 Days',
+                    description: 'Bonus 5GB only available on 4G network.',
+                    terms: '<ul><li>5GB for any use, 5GB for 4G only.</li><li>Validity 7 days.</li></ul>',
+                    action: { type: 'multi', actions: [
+                        { type: 'dial', code: '*123*5*1#' },
+                        { type: 'sms', recipient: '212', message: 'ACT 5GB' }
+                    ]}
+                },
+                'minute-100': {
+                    title: '100 Minute Pack',
+                    price: '৳50',
+                    validity: '7 Days',
+                    description: 'Talk to any local number.',
+                    terms: '<ul><li>Any net minutes.</li><li>Validity 7 days.</li></ul>',
+                    action: { type: 'dial', code: '*111*1#' }
+                },
+                'combo-1gb-50min': {
+                    title: '1GB + 50 Min Combo',
+                    price: '৳75',
+                    validity: '3 Days',
+                    description: 'Internet and talk time in one pack.',
+                    terms: '<ul><li>1GB internet and 50 minutes talk time.</li><li>Validity 3 days.</li></ul>',
+                    action: { type: 'dial', code: '*121*7*1#' }
+                }
+            };
+
+            const offer = offers[offerId];
+
+            if (offer) {
+                document.getElementById('offer-title-header').textContent = offer.title;
+                document.getElementById('offer-title-main').textContent = offer.title;
+                document.getElementById('offer-price').innerHTML = `Price: <strong>${offer.price}</strong>`;
+                document.getElementById('offer-validity').innerHTML = `Validity: <strong>${offer.validity}</strong>`;
+                document.getElementById('offer-description').textContent = offer.description;
+                document.getElementById('offer-terms').innerHTML = offer.terms;
+
+                const activateButton = document.getElementById('activate-button');
+                activateButton.onclick = () => {
+                    if (offer.action.type === 'dial') {
+                        window.location.href = `tel:${offer.action.code.replace(/#/g, '%23')}`;
+                    } else if (offer.action.type === 'sms') {
+                        window.location.href = `sms:${offer.action.recipient}?body=${encodeURIComponent(offer.action.message)}`;
+                    } else if (offer.action.type === 'multi') {
+                        offer.action.actions.forEach(act => {
+                            if (act.type === 'dial') {
+                                // For multi-actions, you might want to confirm with the user or execute sequentially
+                                // For simplicity, we'll just dial the first one or show an alert
+                                alert(`Multi-action: Dialing ${act.code}`);
+                                // window.location.href = `tel:${act.code.replace(/#/g, '%23')}`;
+                            } else if (act.type === 'sms') {
+                                alert(`Multi-action: Sending SMS to ${act.recipient} with message: ${act.message}`);
+                                // window.location.href = `sms:${act.recipient}?body=${encodeURIComponent(act.message)}`;
+                            }
+                        });
+                    }
+                };
+            } else {
+                // Handle offer not found
+                document.getElementById('offer-title-main').textContent = 'Offer Not Found';
+                document.getElementById('offer-price').textContent = '';
+                document.getElementById('offer-validity').textContent = '';
+                document.getElementById('offer-description').textContent = 'The requested offer could not be found.';
+                document.getElementById('offer-terms').innerHTML = '';
+                document.getElementById('activate-button').style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

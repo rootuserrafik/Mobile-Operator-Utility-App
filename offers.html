@@ -25,6 +25,7 @@
             --text-secondary: #666666;
             --activate-button-bg: #0077C2;
             --activate-button-text: #FFFFFF;
+            --search-bar-bg: #ECEFF1;
             
             /* General & Styling Guidelines */
             --card-radius: 12px;
@@ -48,34 +49,34 @@
             padding: 0 var(--page-padding);
         }
 
-        /* Optional Header */
-        .header-card {
-            background-color: var(--card-background);
-            border-radius: var(--card-radius);
-            padding: var(--page-padding);
+        /* Search Bar */
+        .search-container {
+            position: relative;
             margin: var(--page-padding) var(--page-padding) 0 var(--page-padding);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .header-card .operator-logo {
-            width: 80px;
-            height: auto;
-        }
-        
-        .header-card .sim-info h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            margin: 0;
-            color: var(--text-primary);
+            margin-bottom: var(--spacing-unit);
         }
 
-        .header-card .sim-info span {
+        .search-container .material-symbols-outlined {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: none;
+            border-radius: 25px;
+            background-color: var(--search-bar-bg);
             font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            color: var(--selected-tab-color);
-            font-weight: 500;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .search-input:focus {
+            outline: 2px solid var(--activate-button-bg);
         }
 
         /* 2 & 5. Category Tabs */
@@ -171,6 +172,8 @@
             min-height: var(--min-touch-target);
             box-sizing: border-box;
             transition: opacity 0.2s;
+            text-decoration: none;
+            display: block;
         }
 
         .activate-button:active {
@@ -208,39 +211,63 @@
 <body>
 
     <main>
+        <!-- Search Bar -->
+        <div class="search-container">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Search offers...">
+        </div>
+
         <!-- Category Tabs -->
-        <nav class="tabs-container">
-            <a href="#" class="tab-item active">Internet</a>
-            <a href="#" class="tab-item">Minute</a>
-            <a href="#" class="tab-item">Combo</a>
-            <a href="#" class="tab-item">Special</a>
-            <a href="#" class="tab-item">My Offers</a>
+        <nav class="tabs-container" id="tabs-container">
+            <a href="#" class="tab-item active" data-category="all">All</a>
+            <a href="#" class="tab-item" data-category="internet">Internet</a>
+            <a href="#" class="tab-item" data-category="minute">Minute</a>
+            <a href="#" class="tab-item" data-category="combo">Combo</a>
+            <a href="#" class="tab-item" data-category="special">Special</a>
+            <a href="#" class="tab-item" data-category="my-offers">My Offers</a>
         </nav>
 
         <!-- Offer Cards List -->
         <div class="container">
-            <section class="offer-list">
+            <section class="offer-list" id="offer-list">
                 <!-- Offer Card 1: Internet -->
-                <div class="offer-card">
+                <div class="offer-card" data-offer-id="internet-2gb" data-category="internet" data-offer-name="2GB Internet Pack" data-offer-price="34" data-offer-validity="3 Days" data-offer-description="Available for all prepaid customers.">
                     <h3 class="offer-title">2GB Internet Pack</h3>
                     <p class="offer-price-validity">Price: <strong>৳34</strong> | Validity: <strong>3 Days</strong></p>
                     <p class="offer-description">Available for all prepaid customers.</p>
-                    <button class="activate-button">Activate</button>
+                    <a href="offer_detatils.html?id=internet-2gb" class="activate-button">View Details</a>
                 </div>
                 
                 <!-- Offer Card 2: Internet -->
-                <div class="offer-card">
+                <div class="offer-card" data-offer-id="internet-10gb" data-category="internet" data-offer-name="10GB Super Pack" data-offer-price="199" data-offer-validity="30 Days" data-offer-description="High-speed internet for heavy users.">
                     <h3 class="offer-title">10GB Super Pack</h3>
                     <p class="offer-price-validity">Price: <strong>৳199</strong> | Validity: <strong>30 Days</strong></p>
-                    <button class="activate-button">Activate</button>
+                    <p class="offer-description">High-speed internet for heavy users.</p>
+                    <a href="offer_detatils.html?id=internet-10gb" class="activate-button">View Details</a>
                 </div>
                 
                 <!-- Offer Card 3: Internet (assuming filtered view) -->
-                <div class="offer-card">
+                <div class="offer-card" data-offer-id="internet-5gb-weekly" data-category="internet" data-offer-name="Weekly 5GB + 5GB 4G" data-offer-price="129" data-offer-validity="7 Days" data-offer-description="Bonus 5GB only available on 4G network.">
                     <h3 class="offer-title">Weekly 5GB + 5GB 4G</h3>
                     <p class="offer-price-validity">Price: <strong>৳129</strong> | Validity: <strong>7 Days</strong></p>
                     <p class="offer-description">Bonus 5GB only available on 4G network.</p>
-                    <button class="activate-button">Activate</button>
+                    <a href="offer_detatils.html?id=internet-5gb-weekly" class="activate-button">View Details</a>
+                </div>
+
+                <!-- Offer Card 4: Minute -->
+                <div class="offer-card" data-offer-id="minute-100" data-category="minute" data-offer-name="100 Minute Pack" data-offer-price="50" data-offer-validity="7 Days" data-offer-description="Talk to any local number.">
+                    <h3 class="offer-title">100 Minute Pack</h3>
+                    <p class="offer-price-validity">Price: <strong>৳50</strong> | Validity: <strong>7 Days</strong></p>
+                    <p class="offer-description">Talk to any local number.</p>
+                    <a href="offer_detatils.html?id=minute-100" class="activate-button">View Details</a>
+                </div>
+
+                <!-- Offer Card 5: Combo -->
+                <div class="offer-card" data-offer-id="combo-1gb-50min" data-category="combo" data-offer-name="1GB + 50 Min Combo" data-offer-price="75" data-offer-validity="3 Days" data-offer-description="Internet and talk time in one pack.">
+                    <h3 class="offer-title">1GB + 50 Min Combo</h3>
+                    <p class="offer-price-validity">Price: <strong>৳75</strong> | Validity: <strong>3 Days</strong></p>
+                    <p class="offer-description">Internet and talk time in one pack.</p>
+                    <a href="offer_detatils.html?id=combo-1gb-50min" class="activate-button">View Details</a>
                 </div>
             </section>
         </div>
@@ -270,5 +297,48 @@
         </a>
     </nav>
     
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search-input');
+            const tabsContainer = document.getElementById('tabs-container');
+            const offerList = document.getElementById('offer-list');
+            const offerCards = offerList.querySelectorAll('.offer-card');
+
+            let activeCategory = 'all';
+
+            function filterOffers() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+
+                offerCards.forEach(card => {
+                    const offerName = card.dataset.offerName.toLowerCase();
+                    const offerDescription = card.dataset.offerDescription.toLowerCase();
+                    const offerCategory = card.dataset.category;
+
+                    const matchesCategory = activeCategory === 'all' || activeCategory === offerCategory;
+                    const matchesSearch = offerName.includes(searchTerm) || offerDescription.includes(searchTerm);
+
+                    if (matchesCategory && matchesSearch) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            searchInput.addEventListener('input', filterOffers);
+
+            tabsContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    tabsContainer.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    activeCategory = e.target.dataset.category;
+                    filterOffers();
+                }
+            });
+
+            // Initial filter
+            filterOffers();
+        });
+    </script>
 </body>
 </html>
