@@ -3,296 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History & Log</title>
+    <title>History Log</title>
 
-    <!-- Google Fonts: Poppins, Roboto, Roboto Mono -->
+    <!-- Google Fonts: Poppins and Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto+Mono:wght@400&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 
     <style>
-        /* 5. Color Scheme & General Styles */
         :root {
             --page-background: #F4F6F8;
-            --item-background: #FFFFFF;
-            --text-primary: #212121;
-            --text-secondary: #666666;
-            --text-timestamp: #999999;
+            --card-background: #FFFFFF;
+            --primary-text: #212121;
+            --secondary-text: #666666;
             --accent-color: #0077C2;
-            --divider-color: #E0E0E0;
+            --border-color: #E0E0E0;
             
-            /* 6. Styling Guidelines */
-            --item-radius: 10px;
-            --soft-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
-            --item-padding: 16px;
-            --item-gap: 12px;
+            --card-radius: 12px;
+            --soft-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            --page-padding: 16px;
+            --spacing-unit: 16px;
         }
 
         body {
             margin: 0;
-            padding: 0 var(--item-gap) 80px var(--item-gap);
+            padding: 0;
+            padding-bottom: 80px;
             background-color: var(--page-background);
             font-family: 'Roboto', sans-serif;
-            color: var(--text-primary);
+            color: var(--primary-text);
         }
 
         .container {
-            max-width: 600px;
-            margin: 0 auto;
+            padding: var(--page-padding);
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            padding: 16px var(--page-padding);
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--card-background);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            color: var(--primary-text);
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #f1f1f1;
         }
 
         .page-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 22px;
-            font-weight: 500;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        /* Filter Tabs */
-        .filter-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .filter-tabs::-webkit-scrollbar {
-            display: none;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
         }
 
-        .filter-tab {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1px solid var(--divider-color);
-            background-color: var(--item-background);
-            color: var(--text-secondary);
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        .filter-tab.active {
-            background-color: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-
-        /* Log List */
-        .log-list {
+        .history-list {
             display: flex;
             flex-direction: column;
-            gap: var(--item-gap);
+            gap: 10px;
         }
 
-        .log-item {
-            background-color: var(--item-background);
-            border-radius: var(--item-radius);
+        .history-item {
+            background-color: var(--card-background);
+            border-radius: var(--card-radius);
             box-shadow: var(--soft-shadow);
-            padding: var(--item-padding);
-            cursor: pointer;
-            transition: box-shadow 0.2s;
-        }
-        
-        .log-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .log-summary {
+            padding: var(--spacing-unit);
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .log-icon {
-            font-size: 24px !important;
-            color: var(--accent-color);
-            margin-top: 2px;
-        }
-
-        .log-content {
-            flex-grow: 1;
-        }
-
-        /* 4. Typography */
-        .log-action-type {
+        .history-item .title {
             font-family: 'Poppins', sans-serif;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
-            margin: 0;
-            color: var(--text-primary);
+            color: var(--primary-text);
         }
 
-        .log-timestamp {
-            font-family: 'Roboto', sans-serif;
-            font-size: 12px;
-            font-weight: 400; /* Regular */
-            color: var(--text-timestamp);
-            margin-top: 2px;
-            display: block;
-        }
-        
-        .log-description {
-            font-family: 'Roboto', sans-serif;
+        .history-item .details {
             font-size: 14px;
-            color: var(--text-secondary);
-            margin: 8px 0 0 0;
+            color: var(--secondary-text);
         }
 
-        /* 7. Interaction - Details Expansion */
-        .log-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, margin-top 0.3s ease-out;
-            border-top: 1px solid var(--divider-color);
-            margin-top: 0;
-            padding-top: 0;
-        }
-        
-        .log-item.expanded .log-details {
-            max-height: 200px; /* Adjust as needed */
-            margin-top: var(--item-gap);
-            padding-top: var(--item-gap);
+        .history-item .date {
+            font-size: 12px;
+            color: var(--secondary-text);
+            text-align: right;
+            margin-top: 8px;
         }
 
-        .log-details-content {
-            font-family: 'Roboto Mono', monospace;
-            font-size: 13px;
-            color: var(--accent-color);
-            background-color: var(--page-background);
-            padding: 10px;
-            border-radius: 6px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-background);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.07);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 1px solid #eee;
         }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-text);
+            text-decoration: none;
+            flex-grow: 1;
+            font-size: 12px;
+        }
+        .nav-item .material-symbols-outlined { font-size: 24px; margin-bottom: 4px; }
+        .nav-item.active { color: var(--accent-color); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1 class="page-title">Action History</h1>
-        </header>
+    <header class="page-header">
+        <a href="home.html" class="back-button" aria-label="Go back">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h2 class="page-title">History Log</h2>
+    </header>
 
-        <!-- Filter Tabs -->
-        <nav class="filter-tabs" id="filter-tabs">
-            <button class="filter-tab active" data-filter="all">All</button>
-            <button class="filter-tab" data-filter="ussd">USSD</button>
-            <button class="filter-tab" data-filter="sms">SMS</button>
-            <button class="filter-tab" data-filter="offer">Offers</button>
-        </nav>
-
-        <!-- Log List -->
-        <main class="log-list" id="log-list">
-            <!-- Log Item 1: USSD -->
-            <div class="log-item" data-type="ussd">
-                <div class="log-summary">
-                    <span class="material-symbols-outlined log-icon">dialpad</span>
-                    <div class="log-content">
-                        <h3 class="log-action-type">USSD Dial</h3>
-                        <span class="log-timestamp">17 Jul 2025, 10:30 PM</span>
-                        <p class="log-description">Checked account balance.</p>
-                    </div>
-                </div>
-                <div class="log-details">
-                    <pre class="log-details-content">Code: *121#
-Status: Completed</pre>
-                </div>
+    <main class="container">
+        <section class="history-list">
+            <div class="history-item">
+                <span class="title">Activated 2GB Internet Pack</span>
+                <span class="details">Offer ID: internet-2gb</span>
+                <span class="date">2025-07-15 14:00</span>
             </div>
-
-            <!-- Log Item 2: SMS -->
-            <div class="log-item" data-type="sms">
-                <div class="log-summary">
-                    <span class="material-symbols-outlined log-icon">sms</span>
-                    <div class="log-content">
-                        <h3 class="log-action-type">SMS Sent</h3>
-                        <span class="log-timestamp">17 Jul 2025, 09:15 PM</span>
-                        <p class="log-description">Requested NID information.</p>
-                    </div>
-                </div>
-                 <div class="log-details">
-                    <pre class="log-details-content">To: 105
-Message: NID 1991234567890
-Status: Sent from SIM 1</pre>
-                </div>
+            <div class="history-item">
+                <span class="title">Sent NID Check SMS</span>
+                <span class="details">NID: 1991234567890</span>
+                <span class="date">2025-07-14 10:00</span>
             </div>
-
-            <!-- Log Item 3: Offer -->
-            <div class="log-item" data-type="offer">
-                <div class="log-summary">
-                    <span class="material-symbols-outlined log-icon">local_offer</span>
-                    <div class="log-content">
-                        <h3 class="log-action-type">Offer Activated</h3>
-                        <span class="log-timestamp">16 Jul 2025, 05:45 PM</span>
-                        <p class="log-description">Activated '2GB Internet Pack'.</p>
-                    </div>
-                </div>
-                 <div class="log-details">
-                    <pre class="log-details-content">Offer: 2GB Internet Pack
-Price: ৳34
-Validity: 3 Days</pre>
-                </div>
+            <div class="history-item">
+                <span class="title">Checked Main Balance</span>
+                <span class="details">Balance: ৳50.25</span>
+                <span class="date">2025-07-12 22:30</span>
             </div>
-
-            <!-- Log Item 4: USSD -->
-            <div class="log-item" data-type="ussd">
-                <div class="log-summary">
-                    <span class="material-symbols-outlined log-icon">dialpad</span>
-                    <div class="log-content">
-                        <h3 class="log-action-type">USSD Dial</h3>
-                        <span class="log-timestamp">15 Jul 2025, 11:00 AM</span>
-                        <p class="log-description">Checked own mobile number.</p>
-                    </div>
-                </div>
-                 <div class="log-details">
-                    <pre class="log-details-content">Code: *2#
-Status: Completed</pre>
-                </div>
+            <div class="history-item">
+                <span class="title">Dialed *121#</span>
+                <span class="details">Service: Balance Check</span>
+                <span class="date">2025-07-12 22:29</span>
             </div>
-        </main>
-    </div>
+        </section>
+    </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterContainer = document.getElementById('filter-tabs');
-            const logList = document.getElementById('log-list');
-            const logItems = logList.querySelectorAll('.log-item');
-
-            // 7. Interaction Details - Filtering
-            filterContainer.addEventListener('click', (e) => {
-                if (e.target.tagName === 'BUTTON') {
-                    // Update active tab style
-                    filterContainer.querySelector('.active').classList.remove('active');
-                    e.target.classList.add('active');
-
-                    const filter = e.target.dataset.filter;
-
-                    // Filter log items
-                    logItems.forEach(item => {
-                        if (filter === 'all' || item.dataset.type === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                }
-            });
-
-            // 7. Interaction Details - Expansion
-            logList.addEventListener('click', (e) => {
-                const item = e.target.closest('.log-item');
-                if (item) {
-                    item.classList.toggle('expanded');
-                }
-            });
-        });
-    </script>
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <span class="material-symbols-outlined">home</span>
+            Home
+        </a>
+        <a href="offers.html" class="nav-item">
+            <span class="material-symbols-outlined">local_offer</span>
+            Offers
+        </a>
+        <a href="sms.html" class="nav-item">
+            <span class="material-symbols-outlined">send_to_mobile</span>
+            SMS
+        </a>
+        <a href="dial_codes.html" class="nav-item">
+            <span class="material-symbols-outlined">dialer_sip</span>
+            Dial
+        </a>
+        <a href="settings.html" class="nav-item">
+            <span class="material-symbols-outlined">settings</span>
+            Settings
+        </a>
+    </nav>
 
 </body>
 </html>

@@ -152,6 +152,56 @@
             text-align: center;
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        /* Recent Activity Section */
+        .recent-activity-section {
+            background-color: var(--card-color);
+            border-radius: var(--card-radius);
+            box-shadow: var(--soft-shadow);
+            padding: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .recent-activity-section h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-item .text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .activity-item .date {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .view-all-history {
+            display: block;
+            text-align: center;
+            margin-top: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: var(--primary-color);
+            text-decoration: none;
         }
 
         /* 2. Page Structure: Bottom Navigation */
@@ -215,15 +265,15 @@
                 <span class="material-symbols-outlined">account_balance_wallet</span>
                 <span class="button-label">Check Balance</span>
             </a>
-            <a href="#" class="action-button">
+            <a href="offers.html" class="action-button">
                 <span class="material-symbols-outlined">card_giftcard</span>
                 <span class="button-label">View Offers</span>
             </a>
-            <a href="#" class="action-button">
+            <a href="sms.html" class="action-button">
                 <span class="material-symbols-outlined">sms</span>
                 <span class="button-label">Send SMS</span>
             </a>
-            <a href="#" class="action-button">
+            <a href="dial_codes.html" class="action-button">
                 <span class="material-symbols-outlined">dialpad</span>
                 <span class="button-label">Dial Codes</span>
             </a>
@@ -234,6 +284,24 @@
             <p class="info-text" style="color: white; margin: 0;">
                 Last checked balance: ৳50.25 on 12 Jul, 10:30 PM
             </p>
+        </section>
+
+        <!-- Recent Activity Section -->
+        <section class="recent-activity-section">
+            <h3>Recent Activity</h3>
+            <div class="activity-item">
+                <span class="text">Activated 2GB Internet Pack</span>
+                <span class="date">15 Jul, 2:00 PM</span>
+            </div>
+            <div class="activity-item">
+                <span class="text">Sent NID Check SMS</span>
+                <span class="date">14 Jul, 10:00 AM</span>
+            </div>
+            <div class="activity-item">
+                <span class="text">Checked Main Balance</span>
+                <span class="date">12 Jul, 10:30 PM</span>
+            </div>
+            <a href="history.html" class="view-all-history">View All History</a>
         </section>
 
     </main>
