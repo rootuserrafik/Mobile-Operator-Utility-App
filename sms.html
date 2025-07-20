@@ -5,305 +5,320 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMS Services</title>
 
-    <!-- Google Fonts: Poppins and Roboto -->
+    <!-- Google Fonts: Poppins, Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@400&display=swap" rel="stylesheet">
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 
     <style>
-        /* 4. Color Scheme */
         :root {
-            --page-background: #FFFFFF;
+            --page-background: #F4F6F8;
+            --card-background: #FFFFFF;
             --primary-text: #212121;
-            --input-label-text: #424242;
-            --input-border: #CCCCCC;
-            --preview-bg: #F4F6F8;
+            --secondary-text: #666666;
             --cta-button-bg: #0077C2;
             --cta-button-text: #FFFFFF;
-            --result-success-text: #2E7D32;
-            --result-error-text: #D32F2F;
-            
-            /* 5. Styling & Layout */
-            --input-radius: 8px;
+            --search-bar-bg: #ECEFF1;
+            --tab-active-bg: #0077C2;
+            --tab-active-text: #FFFFFF;
+            --card-radius: 12px;
+            --button-radius: 12px;
+            --soft-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            --page-padding: 16px;
             --spacing-unit: 16px;
-            --element-spacing: 12px;
         }
 
         body {
             margin: 0;
-            padding: 0 var(--spacing-unit) 80px var(--spacing-unit);
+            padding: 0;
+            padding-bottom: 80px;
             background-color: var(--page-background);
             font-family: 'Roboto', sans-serif;
             color: var(--primary-text);
         }
 
-        /* 3. Typography */
-        .page-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 600; /* Semi-Bold */
-            color: var(--primary-text);
-            text-align: center;
-            margin: var(--spacing-unit) 0;
-        }
-        
-        .input-label {
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            font-weight: 500; /* Medium */
-            color: var(--input-label-text);
-            display: block;
-            margin-bottom: 8px;
+        .container {
+            padding: var(--page-padding);
         }
 
-        .preview-text {
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            font-weight: 400; /* Regular */
-            color: var(--input-label-text);
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        .send-button-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: 700; /* Bold */
-            color: var(--cta-button-text);
-        }
-
-        .result-text {
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            font-weight: 400; /* Regular */
-        }
-        
-        /* 2. Page Structure & Styling */
-        .sms-template-selector {
-            display: flex;
-            gap: var(--element-spacing);
+        .search-container {
+            position: relative;
             margin-bottom: var(--spacing-unit);
-            border-bottom: 1px solid #e0e0e0;
         }
 
-        .tab-button {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            padding: 10px 0;
-            border: none;
-            background: none;
-            cursor: pointer;
-            color: #666;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .tab-button.active {
-            color: var(--cta-button-bg);
-            border-bottom-color: var(--cta-button-bg);
+        .search-container .material-symbols-outlined {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary-text);
         }
 
-        .form-group {
-            display: none; /* Hidden by default */
-        }
-
-        .form-group.active {
-            display: block; /* Shown when active */
-        }
-
-        .text-input {
+        .search-input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid var(--input-border);
-            border-radius: var(--input-radius);
+            padding: 12px 12px 12px 40px;
+            border: none;
+            border-radius: 25px;
+            background-color: var(--search-bar-bg);
+            font-family: 'Roboto', sans-serif;
             font-size: 16px;
             box-sizing: border-box;
-            margin-bottom: var(--spacing-unit);
         }
         
-        .text-input:focus {
+        .search-input:focus {
             outline: 2px solid var(--cta-button-bg);
-            border-color: var(--cta-button-bg);
         }
 
-        .message-preview-box {
-            background-color: var(--preview-bg);
-            border-radius: var(--input-radius);
-            padding: var(--spacing-unit);
-            margin-bottom: var(--spacing-unit);
-            min-height: 60px;
+        .tabs-container {
+            display: flex;
+            gap: 8px;
+            padding-bottom: var(--spacing-unit);
+            overflow-x: auto;
+            white-space: nowrap;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        .send-sms-button {
-            width: 100%;
+        .tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tab-item {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+            color: var(--secondary-text);
+            background-color: transparent;
+        }
+        
+        .tab-item.active {
+            background-color: var(--tab-active-bg);
+            color: var(--tab-active-text);
+            border-color: var(--tab-active-bg);
+        }
+
+        .service-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .service-card {
+            background-color: var(--card-background);
+            border-radius: var(--card-radius);
+            box-shadow: var(--soft-shadow);
+            padding: var(--page-padding);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .service-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .service-details {
+            flex-grow: 1;
+        }
+
+        .service-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--primary-text);
+            margin: 0 0 4px 0;
+        }
+        
+        .service-description {
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            color: var(--secondary-text);
+            margin: 0;
+        }
+
+        .action-button {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: var(--cta-button-text);
             background-color: var(--cta-button-bg);
             border: none;
-            padding: 14px;
-            border-radius: var(--input-radius);
-            box-shadow: 0 4px 12px rgba(0, 119, 194, 0.3);
+            border-radius: var(--button-radius);
+            padding: 10px 16px;
             cursor: pointer;
-            transition: opacity 0.2s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s;
+            align-self: flex-start;
         }
-        
-        .send-sms-button:active {
+
+        .action-button:active {
             opacity: 0.8;
         }
-        
-        .result-box {
-            display: none; /* Hidden by default */
-            margin-top: var(--spacing-unit);
-            padding: var(--element-spacing);
-            border-radius: var(--input-radius);
-            text-align: center;
-        }
 
-        .result-box.active {
-            display: block;
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-background);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.07);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 1px solid #eee;
         }
-        
-        .result-box.success {
-            color: var(--result-success-text);
-            background-color: #E8F5E9; /* Light green */
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-text);
+            text-decoration: none;
+            flex-grow: 1;
+            font-size: 12px;
         }
-
-        .result-box.error {
-            color: var(--result-error-text);
-            background-color: #FFEBEE; /* Light red */
-        }
-
-        /* Bottom Nav */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background-color: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.07); display: flex; justify-content: space-around; padding: 8px 0; border-top: 1px solid #eee; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: #666; text-decoration: none; flex-grow: 1; font-size: 12px; }
         .nav-item .material-symbols-outlined { font-size: 24px; margin-bottom: 4px; }
         .nav-item.active { color: var(--cta-button-bg); }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 class="page-title">SMS Services</h1>
-    </header>
+    <main class="container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Search for a service...">
+        </div>
 
-    <main>
-        <!-- SMS Template Selector -->
-        <nav class="sms-template-selector" id="sms-tabs">
-            <button class="tab-button active" data-form="nid-check">NID Check</button>
-            <button class="tab-button" data-form="sim-info">SIM Info</button>
+        <!-- Category Tabs -->
+        <nav class="tabs-container" id="tabs-container">
+            <button class="tab-item active" data-category="all">All</button>
+            <button class="tab-item" data-category="account">Account</button>
+            <button class="tab-item" data-category="utility">Utility</button>
+            <button class="tab-item" data-category="other">Other</button>
         </nav>
-
-        <!-- Dynamic Form Area -->
-        <section class="form-container">
-            <!-- Form 1: NID Check -->
-            <div id="form-nid-check" class="form-group active">
-                <label for="nid-number" class="input-label">Enter NID Number</label>
-                <input type="number" id="nid-number" class="text-input" placeholder="e.g., 1991234567890">
+        
+        <!-- Service List -->
+        <section class="service-list" id="service-list">
+            <!-- Service Card 1: NID Check -->
+            <div class="service-card" data-service-name="NID Check" data-service-description="Check voter ID information." data-category="utility">
+                <div class="service-info">
+                    <div class="service-details">
+                        <h3 class="service-title">NID Check</h3>
+                        <p class="service-description">Check voter ID information.</p>
+                    </div>
+                    <a href="sms_details.html?service=nid" class="action-button">
+                        <span class="material-symbols-outlined">edit_document</span> Open
+                    </a>
+                </div>
             </div>
 
-            <!-- Form 2: SIM Info Check -->
-            <div id="form-sim-info" class="form-group">
-                <label for="reg-number" class="input-label">Enter Number to Check</label>
-                <input type="tel" id="reg-number" class="text-input" placeholder="e.g., 01700000000">
+            <!-- Service Card 2: SIM Info -->
+            <div class="service-card" data-service-name="SIM Info" data-service-description="Get information about a SIM card." data-category="account">
+                <div class="service-info">
+                    <div class="service-details">
+                        <h3 class="service-title">SIM Info</h3>
+                        <p class="service-description">Get information about a SIM card.</p>
+                    </div>
+                    <a href="sms_details.html?service=sim" class="action-button">
+                        <span class="material-symbols-outlined">edit_document</span> Open
+                    </a>
+                </div>
+            </div>
+             <!-- Service Card 3: Balance Transfer -->
+             <div class="service-card" data-service-name="Balance Transfer" data-service-description="Share account balance with another user." data-category="account">
+                <div class="service-info">
+                    <div class="service-details">
+                        <h3 class="service-title">Balance Transfer</h3>
+                        <p class="service-description">Share account balance with another user.</p>
+                    </div>
+                    <a href="sms_details.html?service=transfer" class="action-button">
+                        <span class="material-symbols-outlined">edit_document</span> Open
+                    </a>
+                </div>
             </div>
         </section>
-
-        <!-- Message Preview -->
-        <div class="message-preview-box">
-            <label class="input-label">Message Preview:</label>
-            <p class="preview-text" id="message-preview"></p>
-        </div>
-
-        <!-- Send Button -->
-        <button class="send-sms-button" id="send-button">
-            <span class="send-button-text">Send SMS</span>
-        </button>
-
-        <!-- Result Box -->
-        <div class="result-box" id="result-box">
-            <p class="result-text" id="result-message"></p>
-        </div>
     </main>
     
-    <!-- Bottom Navigation -->
+    <!-- Persistent Bottom Navigation -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">home</span>Home</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">local_offer</span>Offers</a>
-        <a href="#" class="nav-item active"><span class="material-symbols-outlined">send_to_mobile</span>SMS</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">dialer_sip</span>Dial</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">settings</span>Settings</a>
+        <a href="home.html" class="nav-item">
+            <span class="material-symbols-outlined">home</span>
+            Home
+        </a>
+        <a href="offers.html" class="nav-item">
+            <span class="material-symbols-outlined">local_offer</span>
+            Offers
+        </a>
+        <a href="sms.html" class="nav-item active">
+            <span class="material-symbols-outlined">send_to_mobile</span>
+            SMS
+        </a>
+        <a href="dial_codes.html" class="nav-item">
+            <span class="material-symbols-outlined">dialer_sip</span>
+            Dial
+        </a>
+        <a href="settings.html" class="nav-item">
+            <span class="material-symbols-outlined">settings</span>
+            Settings
+        </a>
     </nav>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const tabsContainer = document.getElementById('sms-tabs');
-            const formGroups = document.querySelectorAll('.form-group');
-            const inputs = document.querySelectorAll('.text-input');
-            const preview = document.getElementById('message-preview');
-            const sendButton = document.getElementById('send-button');
-            const resultBox = document.getElementById('result-box');
-            const resultMessage = document.getElementById('result-message');
+            const searchInput = document.getElementById('search-input');
+            const tabsContainer = document.getElementById('tabs-container');
+            const serviceList = document.getElementById('service-list');
+            const serviceCards = serviceList.querySelectorAll('.service-card');
 
-            let activeFormId = 'form-nid-check';
+            let activeCategory = 'all';
 
-            const templates = {
-                'form-nid-check': {
-                    recipient: '105',
-                    format: (nid) => `NID ${nid}`
-                },
-                'form-sim-info': {
-                    recipient: '1600',
-                    format: (num) => `INFO ${num}`
-                }
-            };
+            function filterServices() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
 
-            function updatePreview() {
-                const activeForm = document.getElementById(activeFormId);
-                const input = activeForm.querySelector('.text-input');
-                const template = templates[activeFormId];
-                
-                if (template) {
-                    const inputValue = input.value.trim();
-                    const message = template.format(inputValue || `[${input.placeholder.split(' ')[1]}]`);
-                    preview.textContent = `To: ${template.recipient}\nMessage: ${message}`;
-                }
+                serviceCards.forEach(card => {
+                    const serviceName = card.dataset.serviceName.toLowerCase();
+                    const serviceDescription = card.dataset.serviceDescription.toLowerCase();
+                    const serviceCategory = card.dataset.category;
+
+                    const matchesCategory = activeCategory === 'all' || activeCategory === serviceCategory;
+                    const matchesSearch = serviceName.includes(searchTerm) || serviceDescription.includes(searchTerm);
+
+                    if (matchesCategory && matchesSearch) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             }
+
+            searchInput.addEventListener('input', filterServices);
 
             tabsContainer.addEventListener('click', (e) => {
                 if (e.target.tagName === 'BUTTON') {
-                    // Update active tab
                     tabsContainer.querySelector('.active').classList.remove('active');
                     e.target.classList.add('active');
-
-                    // Update active form
-                    activeFormId = 'form-' + e.target.dataset.form;
-                    formGroups.forEach(form => {
-                        form.classList.toggle('active', form.id === activeFormId);
-                    });
-                    
-                    updatePreview();
+                    activeCategory = e.target.dataset.category;
+                    filterServices();
                 }
             });
 
-            inputs.forEach(input => {
-                input.addEventListener('input', updatePreview);
-            });
-
-            sendButton.addEventListener('click', () => {
-                // This is a simulation. In a real app, this would trigger an SMS intent.
-                resultMessage.textContent = 'SMS sent successfully! Awaiting response.';
-                resultBox.className = 'result-box active success';
-                
-                // Hide the message after a few seconds
-                setTimeout(() => {
-                    resultBox.classList.remove('active');
-                }, 4000);
-            });
-
-            // Initial state
-            updatePreview();
+            // Initial filter
+            filterServices();
         });
     </script>
+    
 </body>
 </html>
