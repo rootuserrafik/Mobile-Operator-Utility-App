@@ -216,17 +216,22 @@
         
         <!-- Category Tabs -->
         <nav class="tabs-container">
-            <button class="tab-item active">Balance</button>
-            <button class="tab-item">Internet</button>
-            <button class="tab-item">Device Info</button>
-            <button class="tab-item">Services</button>
-            <button class="tab-item">Other</button>
+            <button class="tab-item active" data-category="all">All</button>
+            <button class="tab-item" data-category="balance">Balance</button>
+            <button class="tab-item" data-category="internet">Internet</button>
+            <button class="tab-item" data-category="device-info">Device Info</button>
+            <button class="tab-item" data-category="testing">Testing</button>
+            <button class="tab-item" data-category="info">Info</button>
+            <button class="tab-item" data-category="services">Services</button>
+            <button class="tab-item" data-category="emergency">Emergency/Helpline</button>
+            <button class="tab-item" data-category="financial">Financial</button>
+            <button class="tab-item" data-category="other">Other</button>
         </nav>
         
         <!-- Code List -->
         <section class="code-list">
             <!-- Code Card 1 -->
-            <div class="code-card">
+            <div class="code-card" data-category="balance">
                 <div class="code-info">
                     <h3 class="code-title">Check Balance</h3>
                     <span class="ussd-code">*121#</span>
@@ -239,7 +244,7 @@
             </div>
 
             <!-- Code Card 2 -->
-            <div class="code-card">
+            <div class="code-card" data-category="info">
                 <div class="code-info">
                     <h3 class="code-title">Check Own Number</h3>
                     <span class="ussd-code">*2#</span>
@@ -251,7 +256,7 @@
             </div>
             
             <!-- Code Card 3 (Example for another category) -->
-            <div class="code-card">
+            <div class="code-card" data-category="device-info">
                 <div class="code-info">
                     <h3 class="code-title">Show IMEI</h3>
                     <span class="ussd-code">*#06#</span>
@@ -263,7 +268,7 @@
             </div>
 
              <!-- Code Card 4 -->
-             <div class="code-card">
+             <div class="code-card" data-category="internet">
                 <div class="code-info">
                     <h3 class="code-title">Internet Offers</h3>
                     <span class="ussd-code">*123*1#</span>
@@ -273,6 +278,513 @@
                     <span class="material-symbols-outlined">dialpad</span> Dial
                 </a>
             </div>
+
+            <!-- Battery Health & Performance -->
+            <div class="code-card" data-category="testing">
+                <div class="code-info">
+                    <h3 class="code-title">Battery Status (Quick Test)</h3>
+                    <span class="ussd-code">*#0228#</span>
+                    <p class="description-text">Check your device's battery status and details.</p>
+                </div>
+                <a href="tel:*%230228%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Display Functionality -->
+            <div class="code-card" data-category="testing">
+                <div class="code-info">
+                    <h3 class="code-title">General Test Mode (LCD, Dimming)</h3>
+                    <span class="ussd-code">*#0*#</span>
+                    <p class="description-text">Access general test mode for LCD and dimming.</p>
+                </div>
+                <a href="tel:*%230%230%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Audio & Vibration -->
+            <div class="code-card" data-category="testing">
+                <div class="code-info">
+                    <h3 class="code-title">General Test Mode (Speaker, Vibration)</h3>
+                    <span class="ussd-code">*#0*#</span>
+                    <p class="description-text">Access general test mode for speaker and vibration.</p>
+                </div>
+                <a href="tel:*%230%230%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Sensor Testing -->
+            <div class="code-card" data-category="testing">
+                <div class="code-info">
+                    <h3 class="code-title">General Test Mode (Sensor)</h3>
+                    <span class="ussd-code">*#0*#</span>
+                    <p class="description-text">Access general test mode for various sensors.</p>
+                </div>
+                <a href="tel:*%230%230%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Wi-Fi Network Information -->
+            <div class="code-card" data-category="testing">
+                <div class="code-info">
+                    <h3 class="code-title">Wi-Fi Test</h3>
+                    <span class="ussd-code">*#*#232339#*#*</span>
+                    <p class="description-text">Perform a Wi-Fi test.</p>
+                </div>
+                <a href="tel:*%23*%23232339%23*%23*" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- GPS Testing -->
+            <div class="code-card" data-category="testing">
+                <div class="code-info">
+                    <h3 class="code-title">GPS Test</h3>
+                    <span class="ussd-code">*#*#1472365#*#*</span>
+                    <p class="description-text">Perform a GPS test.</p>
+                </div>
+                <a href="tel:*%23*%231472365%23*%23*" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Bluetooth Functions -->
+            <div class="code-card" data-category="testing">
+                <div class="code-info">
+                    <h3 class="code-title">Bluetooth Test</h3>
+                    <span class="ussd-code">*#*#232331#*#*</span>
+                    <p class="description-text">Perform a Bluetooth test.</p>
+                </div>
+                <a href="tel:*%23*%23232331%23*%23*" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Phone Information -->
+            <div class="code-card" data-category="info">
+                <div class="code-info">
+                    <h3 class="code-title">Phone Information & Usage</h3>
+                    <span class="ussd-code">*#*#4636#*#*</span>
+                    <p class="description-text">View phone information, usage statistics, and Wi-Fi info.</p>
+                </div>
+                <a href="tel:*%23*%234636%23*%23*" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Emergency Numbers (Bangladesh) -->
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">National Emergency Helpdesk</h3>
+                    <span class="ussd-code">999</span>
+                    <p class="description-text">For all emergencies (Police, Fire, Ambulance).</p>
+                </div>
+                <a href="tel:999" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">Child Helpline</h3>
+                    <span class="ussd-code">1098</span>
+                    <p class="description-text">For child protection and abuse reporting.</p>
+                </div>
+                <a href="tel:1098" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">National Helpline (Women & Children)</h3>
+                    <span class="ussd-code">109</span>
+                    <p class="description-text">For violence against women and children.</p>
+                </div>
+                <a href="tel:109" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">Anti-Corruption Commission</h3>
+                    <span class="ussd-code">106</span>
+                    <p class="description-text">Report corruption incidents.</p>
+                </div>
+                <a href="tel:106" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">Health Call Center</h3>
+                    <span class="ussd-code">16263</span>
+                    <p class="description-text">General health advice and information.</p>
+                </div>
+                <a href="tel:16263" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">National Identity Card (NID) Helpline</h3>
+                    <span class="ussd-code">105</span>
+                    <p class="description-text">For NID related queries.</p>
+                </div>
+                <a href="tel:105" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">Disaster Management Helpline</h3>
+                    <span class="ussd-code">1090</span>
+                    <p class="description-text">For disaster related information and assistance.</p>
+                </div>
+                <a href="tel:1090" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">Agriculture Information Service</h3>
+                    <span class="ussd-code">16123</span>
+                    <p class="description-text">For agricultural advice and information.</p>
+                </div>
+                <a href="tel:16123" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">Legal Aid Helpline</h3>
+                    <span class="ussd-code">16430</span>
+                    <p class="description-text">For legal advice and assistance.</p>
+                </div>
+                <a href="tel:16430" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="emergency">
+                <div class="code-info">
+                    <h3 class="code-title">BTRC Helpline</h3>
+                    <span class="ussd-code">100</span>
+                    <p class="description-text">Bangladesh Telecommunication Regulatory Commission.</p>
+                </div>
+                <a href="tel:100" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Financial Transactions (Bangladesh) -->
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Bkash USSD</h3>
+                    <span class="ussd-code">*247#</span>
+                    <p class="description-text">Access Bkash mobile banking services.</p>
+                </div>
+                <a href="tel:*247%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Nagad USSD</h3>
+                    <span class="ussd-code">*167#</span>
+                    <p class="description-text">Access Nagad mobile banking services.</p>
+                </div>
+                <a href="tel:*167%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Rocket USSD (Dutch-Bangla Bank)</h3>
+                    <span class="ussd-code">*322#</span>
+                    <p class="description-text">Access Rocket mobile banking services.</p>
+                </div>
+                <a href="tel:*322%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Financial Transactions (Bangladesh) -->
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Bkash USSD</h3>
+                    <span class="ussd-code">*247#</span>
+                    <p class="description-text">Access Bkash mobile banking services.</p>
+                </div>
+                <a href="tel:*247%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Nagad USSD</h3>
+                    <span class="ussd-code">*167#</span>
+                    <p class="description-text">Access Nagad mobile banking services.</p>
+                </div>
+                <a href="tel:*167%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Rocket USSD (Dutch-Bangla Bank)</h3>
+                    <span class="ussd-code">*322#</span>
+                    <p class="description-text">Access Rocket mobile banking services.</p>
+                </div>
+                <a href="tel:*322%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Financial Transactions (Bangladesh) -->
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Bkash USSD</h3>
+                    <span class="ussd-code">*247#</span>
+                    <p class="description-text">Access Bkash mobile banking services.</p>
+                </div>
+                <a href="tel:*247%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Nagad USSD</h3>
+                    <span class="ussd-code">*167#</span>
+                    <p class="description-text">Access Nagad mobile banking services.</p>
+                </div>
+                <a href="tel:*167%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Rocket USSD (Dutch-Bangla Bank)</h3>
+                    <span class="ussd-code">*322#</span>
+                    <p class="description-text">Access Rocket mobile banking services.</p>
+                </div>
+                <a href="tel:*322%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Financial Transactions (Bangladesh) -->
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Bkash USSD</h3>
+                    <span class="ussd-code">*247#</span>
+                    <p class="description-text">Access Bkash mobile banking services.</p>
+                </div>
+                <a href="tel:*247%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Nagad USSD</h3>
+                    <span class="ussd-code">*167#</span>
+                    <p class="description-text">Access Nagad mobile banking services.</p>
+                </div>
+                <a href="tel:*167%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Rocket USSD (Dutch-Bangla Bank)</h3>
+                    <span class="ussd-code">*322#</span>
+                    <p class="description-text">Access Rocket mobile banking services.</p>
+                </div>
+                <a href="tel:*322%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Financial Transactions (Bangladesh) -->
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Bkash USSD</h3>
+                    <span class="ussd-code">*247#</span>
+                    <p class="description-text">Access Bkash mobile banking services.</p>
+                </div>
+                <a href="tel:*247%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Nagad USSD</h3>
+                    <span class="ussd-code">*167#</span>
+                    <p class="description-text">Access Nagad mobile banking services.</p>
+                </div>
+                <a href="tel:*167%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Rocket USSD (Dutch-Bangla Bank)</h3>
+                    <span class="ussd-code">*322#</span>
+                    <p class="description-text">Access Rocket mobile banking services.</p>
+                </div>
+                <a href="tel:*322%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Financial Transactions (Bangladesh) -->
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Bkash USSD</h3>
+                    <span class="ussd-code">*247#</span>
+                    <p class="description-text">Access Bkash mobile banking services.</p>
+                </div>
+                <a href="tel:*247%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Nagad USSD</h3>
+                    <span class="ussd-code">*167#</span>
+                    <p class="description-text">Access Nagad mobile banking services.</p>
+                </div>
+                <a href="tel:*167%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <div class="code-card" data-category="financial">
+                <div class="code-info">
+                    <h3 class="code-title">Rocket USSD (Dutch-Bangla Bank)</h3>
+                    <span class="ussd-code">*322#</span>
+                    <p class="description-text">Access Rocket mobile banking services.</p>
+                </div>
+                <a href="tel:*322%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            }
+
+            <!-- Battery Health & Performance -->
+            <div class="code-card" data-category="testing">
+                <div class="code-info">
+                    <h3 class="code-title">Battery Status (Quick Test)</h3>
+                    <span class="ussd-code">*#0228#</span>
+                    <p class="description-text">Check your device's battery status and details.</p>
+                </div>
+                <a href="tel:*%230228%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Display Functionality -->
+            <div class="code-card">
+                <div class="code-info">
+                    <h3 class="code-title">General Test Mode (LCD, Dimming)</h3>
+                    <span class="ussd-code">*#0*#</span>
+                    <p class="description-text">Access general test mode for LCD and dimming.</p>
+                </div>
+                <a href="tel:*%230%230%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Audio & Vibration -->
+            <div class="code-card">
+                <div class="code-info">
+                    <h3 class="code-title">General Test Mode (Speaker, Vibration)</h3>
+                    <span class="ussd-code">*#0*#</span>
+                    <p class="description-text">Access general test mode for speaker and vibration.</p>
+                </div>
+                <a href="tel:*%230%230%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Sensor Testing -->
+            <div class="code-card">
+                <div class="code-info">
+                    <h3 class="code-title">General Test Mode (Sensor)</h3>
+                    <span class="ussd-code">*#0*#</span>
+                    <p class="description-text">Access general test mode for various sensors.</p>
+                </div>
+                <a href="tel:*%230%230%23" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Wi-Fi Network Information -->
+            <div class="code-card">
+                <div class="code-info">
+                    <h3 class="code-title">Wi-Fi Test</h3>
+                    <span class="ussd-code">*#*#232339#*#*</span>
+                    <p class="description-text">Perform a Wi-Fi test.</p>
+                </div>
+                <a href="tel:*%23*%23232339%23*%23*" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- GPS Testing -->
+            <div class="code-card">
+                <div class="code-info">
+                    <h3 class="code-title">GPS Test</h3>
+                    <span class="ussd-code">*#*#1472365#*#*</span>
+                    <p class="description-text">Perform a GPS test.</p>
+                </div>
+                <a href="tel:*%23*%231472365%23*%23*" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Bluetooth Functions -->
+            <div class="code-card">
+                <div class="code-info">
+                    <h3 class="code-title">Bluetooth Test</h3>
+                    <span class="ussd-code">*#*#232331#*#*</span>
+                    <p class="description-text">Perform a Bluetooth test.</p>
+                </div>
+                <a href="tel:*%23*%23232331%23*%23*" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            </div>
+
+            <!-- Phone Information -->
+            <div class="code-card">
+                <div class="code-info">
+                    <h3 class="code-title">Phone Information & Usage</h3>
+                    <span class="ussd-code">*#*#4636#*#*</span>
+                    <p class="description-text">View phone information, usage statistics, and Wi-Fi info.</p>
+                </div>
+                <a href="tel:*%23*%234636%23*%23*" class="dial-button">
+                    <span class="material-symbols-outlined">dialpad</span> Dial
+                </a>
+            }
         </section>
     </main>
     
@@ -300,5 +812,49 @@
         </a>
     </nav>
     
-</body>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchInput = document.querySelector('.search-input');
+                const tabItems = document.querySelectorAll('.tab-item');
+                const codeCards = document.querySelectorAll('.code-card');
+
+                function filterCodes() {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    const activeCategory = document.querySelector('.tab-item.active').dataset.category;
+
+                    codeCards.forEach(card => {
+                        const title = card.querySelector('.code-title').textContent.toLowerCase();
+                        const ussdCode = card.querySelector('.ussd-code').textContent.toLowerCase();
+                        const description = card.querySelector('.description-text').textContent.toLowerCase();
+                        const cardCategory = card.dataset.category;
+
+                        const matchesSearch = title.includes(searchTerm) || 
+                                            ussdCode.includes(searchTerm) || 
+                                            description.includes(searchTerm);
+                        
+                        const matchesCategory = activeCategory === 'all' || cardCategory === activeCategory;
+
+                        if (matchesSearch && matchesCategory) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+
+                searchInput.addEventListener('input', filterCodes);
+
+                tabItems.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        tabItems.forEach(item => item.classList.remove('active'));
+                        this.classList.add('active');
+                        filterCodes();
+                    });
+                });
+
+                // Initial filter on page load
+                filterCodes();
+            });
+        </script>
+    </body>
 </html>
